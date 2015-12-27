@@ -8,6 +8,7 @@ import static org.testng.Assert.assertEquals;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import de.sevendroids.scm.analyse.business.TestDataHelper;
 import de.sevendroids.scm.analyse.data.FileData;
 
 /**
@@ -15,7 +16,7 @@ import de.sevendroids.scm.analyse.data.FileData;
  *
  */
 @Test(groups = "Unit")
-public class MinNumberOfCommentsFilterTest extends BaseFilterTest {
+public class MinNumberOfCommentsFilterTest {
 
 	/**
 	 * Test method for
@@ -34,15 +35,16 @@ public class MinNumberOfCommentsFilterTest extends BaseFilterTest {
 	protected Object[][] commentTestCases() {
 		return new Object[][] {
 				//
-				{ "Null filter don't change the input", createFileData("/path/createdFile.java", 1), null,
-						createFileData("/path/createdFile.java", 1) },
-				{ "Negativ filter don't change the input", createFileData("/path/createdFile.java", 1), -1,
-						createFileData("/path/createdFile.java", 1) },
+				{ "Null filter don't change the input", TestDataHelper.createFileData("/path/createdFile.java", 1),
+						null, TestDataHelper.createFileData("/path/createdFile.java", 1) },
+				{ "Negativ filter don't change the input", TestDataHelper.createFileData("/path/createdFile.java", 1),
+						-1, TestDataHelper.createFileData("/path/createdFile.java", 1) },
 				{ "Filtering with \"3*\" returns only FileData elements with at least \"3\" comments",
-						createFileData("/path/FileWithFixedBug.java", 3), 3,
-						createFileData("/path/FileWithFixedBug.java", 3) },
+						TestDataHelper.createFileData("/path/FileWithFixedBug.java", 3), 3,
+						TestDataHelper.createFileData("/path/FileWithFixedBug.java", 3) },
 				{ "Filtering with \"3*\" returns only FileData elements with at least \"3\" comments",
-						createFileData("/path/FileWithFixedBug.java", 2), 3, null },
+						TestDataHelper.createFileData("/path/FileWithFixedBug.java", 2), 3,
+						new FileData("/path/FileWithFixedBug.java") },
 				//
 		};
 	}

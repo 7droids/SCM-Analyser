@@ -4,8 +4,10 @@
 package de.sevendroids.scm.analyse.data;
 
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -15,12 +17,33 @@ import java.util.Map;
 public class FileHandler {
 	private final Map<String, FileData> fileMap = new HashMap<>();
 
+	/**
+	 * @param filename
+	 *            Not NULL
+	 * @param author
+	 *            Not NULL
+	 * @param changeDate
+	 *            Not NULL
+	 * @param comment
+	 *            Not NULL
+	 */
 	public void add(String filename, String author, Instant changeDate, String comment) {
 		LogData logData = new LogData(author, changeDate, comment);
 		if (fileMap.containsKey(filename))
 			fileMap.get(filename).addLogData(logData);
 		else
 			fileMap.put(filename, new FileData(filename, logData));
+	}
+
+	/**
+	 * @param fileData
+	 *            Not NULL
+	 */
+	public void add(FileData fileData) {
+		List<LogData> logs = fileData.getLogs();
+		for (LogData logData : logs) {
+			add(fileData.getFileName(), logData.getAuthor(), logData.getCommentDate(), logData.getComment());
+		}
 	}
 
 	/*
@@ -48,4 +71,7 @@ public class FileHandler {
 		return builder.toString();
 	}
 
+	public final List<FileData> getFileDataList() {
+		return new ArrayList<>(fileMap.values());
+	}
 }

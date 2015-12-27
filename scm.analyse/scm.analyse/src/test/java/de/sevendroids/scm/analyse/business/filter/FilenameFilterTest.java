@@ -8,6 +8,7 @@ import static org.testng.Assert.assertEquals;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import de.sevendroids.scm.analyse.business.TestDataHelper;
 import de.sevendroids.scm.analyse.data.FileData;
 
 /**
@@ -15,7 +16,7 @@ import de.sevendroids.scm.analyse.data.FileData;
  *
  */
 @Test(groups = "Unit")
-public class FilenameFilterTest extends BaseFilterTest {
+public class FilenameFilterTest {
 
 	/**
 	 * Test method for
@@ -34,17 +35,18 @@ public class FilenameFilterTest extends BaseFilterTest {
 	protected Object[][] commentTestCases() {
 		return new Object[][] {
 				//
-				{ "Null filter don't change the input", createFileData("/path/createdFile.java", 1), null,
-						createFileData("/path/createdFile.java", 1) },
-				{ "Empty filter don't change the input", createFileData("/path/createdFile.java", 1), "",
-						createFileData("/path/createdFile.java", 1) },
-				{ "Filter with spaces only don't change the input", createFileData("/path/createdFile.java", 1), "  ",
-						createFileData("/path/createdFile.java", 1) },
+				{ "Null filter don't change the input", TestDataHelper.createFileData("/path/createdFile.java", 1),
+						null, TestDataHelper.createFileData("/path/createdFile.java", 1) },
+				{ "Empty filter don't change the input", TestDataHelper.createFileData("/path/createdFile.java", 1), "",
+						TestDataHelper.createFileData("/path/createdFile.java", 1) },
+				{ "Filter with spaces only don't change the input",
+						TestDataHelper.createFileData("/path/createdFile.java", 1), "  ",
+						TestDataHelper.createFileData("/path/createdFile.java", 1) },
 				{ "The filtering with \".*.java\" results in elements ending with \"java\"",
-						createFileData("/path/FileWithFixedBug.java", 3), ".*.java",
-						createFileData("/path/FileWithFixedBug.java", 3) },
+						TestDataHelper.createFileData("/path/FileWithFixedBug.java", 3), ".*.java",
+						TestDataHelper.createFileData("/path/FileWithFixedBug.java", 3) },
 				{ "Filtering for \".*.c\" (ending with c) returns NULL for a java file",
-						createFileData("/path/FileWithFixedBug.java", 3), ".*.c", null },
+						TestDataHelper.createFileData("/path/FileWithFixedBug.java", 3), ".*.c", null },
 				//
 		};
 	}

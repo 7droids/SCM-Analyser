@@ -1,13 +1,17 @@
-package de.sevendroids.scm.analyse.business.filter;
+package de.sevendroids.scm.analyse.business;
 
 import java.time.Instant;
 
 import de.sevendroids.scm.analyse.data.FileData;
 import de.sevendroids.scm.analyse.data.LogData;
 
-public class BaseFilterTest {
+public class TestDataHelper {
 
-	protected FileData createFileData(String fileName, int numberOfComments) {
+	private TestDataHelper() {
+		super();
+	}
+
+	public static FileData createFileData(String fileName, int numberOfComments) {
 		FileData fileData = new FileData(fileName);
 		switch (numberOfComments) {
 		case 3:

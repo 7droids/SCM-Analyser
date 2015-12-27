@@ -17,6 +17,6 @@ public class MinNumberOfCommentsFilter implements FileDataFilter<Integer> {
 			return data;
 		if (data.getLogCount() >= filter)
 			return data;
-		return null;
+		return new FileData(data.getFileName());
 	}
 }

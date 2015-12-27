@@ -13,6 +13,6 @@ public interface LogReader<K> {
 
 	void disconnect();
 
-	void connect(String username, String password, String url) throws SCMConnectionException;
+	void connect(String username, char[] password, String url) throws SCMConnectionException;
 
 }

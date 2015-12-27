@@ -29,12 +29,11 @@ public class SVNLogReader implements LogReader<SVNLogEntry> {
 	private SVNRepository repository = null;
 
 	@Override
-	public void connect(String username, String password, String url) throws SCMConnectionException {
+	public void connect(String username, char[] password, String url) throws SCMConnectionException {
 		DAVRepositoryFactory.setup();
 		try {
 			repository = SVNRepositoryFactory.create(SVNURL.parseURIEncoded(url));
-			ISVNAuthenticationManager authManager = BasicAuthenticationManager.newInstance(username,
-					password.toCharArray());
+			ISVNAuthenticationManager authManager = BasicAuthenticationManager.newInstance(username, password);
 			repository.setAuthenticationManager(authManager);
 		} catch (SVNException e) {
 			throw new SCMConnectionException(url, username, e);

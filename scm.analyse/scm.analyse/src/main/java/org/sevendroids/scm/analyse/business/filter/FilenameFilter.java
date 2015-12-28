@@ -1,11 +1,11 @@
 /**
  * 
  */
-package de.sevendroids.scm.analyse.business.filter;
+package org.sevendroids.scm.analyse.business.filter;
 
 import java.util.regex.Pattern;
 
-import de.sevendroids.scm.analyse.data.FileData;
+import org.sevendroids.scm.analyse.data.FileData;
 
 /**
  * @author 7droids

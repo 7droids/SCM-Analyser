@@ -1,7 +1,7 @@
 /**
  * 
  */
-package de.sevendroids.scm.analyse.business;
+package org.sevendroids.scm.analyse.business;
 
 import java.time.Instant;
 import java.util.Date;
@@ -9,6 +9,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import org.sevendroids.scm.analyse.data.FileHandler;
 import org.tmatesoft.svn.core.SVNException;
 import org.tmatesoft.svn.core.SVNLogEntry;
 import org.tmatesoft.svn.core.SVNLogEntryPath;
@@ -18,8 +19,6 @@ import org.tmatesoft.svn.core.auth.ISVNAuthenticationManager;
 import org.tmatesoft.svn.core.internal.io.dav.DAVRepositoryFactory;
 import org.tmatesoft.svn.core.io.SVNRepository;
 import org.tmatesoft.svn.core.io.SVNRepositoryFactory;
-
-import de.sevendroids.scm.analyse.data.FileHandler;
 
 /**
  * @author 7droids

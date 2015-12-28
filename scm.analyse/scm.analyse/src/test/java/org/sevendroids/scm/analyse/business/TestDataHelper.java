@@ -1,9 +1,9 @@
-package de.sevendroids.scm.analyse.business;
+package org.sevendroids.scm.analyse.business;
 
 import java.time.Instant;
 
-import de.sevendroids.scm.analyse.data.FileData;
-import de.sevendroids.scm.analyse.data.LogData;
+import org.sevendroids.scm.analyse.data.FileData;
+import org.sevendroids.scm.analyse.data.LogData;
 
 public class TestDataHelper {
 

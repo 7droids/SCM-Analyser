@@ -1,7 +1,7 @@
 /**
  * 
  */
-package de.sevendroids.scm.analyse.business;
+package org.sevendroids.scm.analyse.business;
 
 /**
  * @author 7droids

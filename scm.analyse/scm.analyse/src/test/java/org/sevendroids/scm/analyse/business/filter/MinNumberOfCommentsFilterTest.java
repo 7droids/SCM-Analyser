@@ -1,15 +1,15 @@
 /**
  * 
  */
-package de.sevendroids.scm.analyse.business.filter;
+package org.sevendroids.scm.analyse.business.filter;
 
 import static org.testng.Assert.assertEquals;
 
+import org.sevendroids.scm.analyse.business.TestDataHelper;
+import org.sevendroids.scm.analyse.business.filter.MinNumberOfCommentsFilter;
+import org.sevendroids.scm.analyse.data.FileData;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-
-import de.sevendroids.scm.analyse.business.TestDataHelper;
-import de.sevendroids.scm.analyse.data.FileData;
 
 /**
  * @author 7droids
@@ -20,7 +20,7 @@ public class MinNumberOfCommentsFilterTest {
 
 	/**
 	 * Test method for
-	 * {@link de.sevendroids.scm.analyse.business.filter.MinNumberOfCommentsFilter#filter(de.sevendroids.scm.analyse.data.FileData, java.lang.Integer)}
+	 * {@link org.sevendroids.scm.analyse.business.filter.MinNumberOfCommentsFilter#filter(org.sevendroids.scm.analyse.data.FileData, java.lang.Integer)}
 	 * .
 	 */
 

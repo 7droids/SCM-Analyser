@@ -1,19 +1,19 @@
 /**
  * 
  */
-package de.sevendroids.scm.analyse.business;
+package org.sevendroids.scm.analyse.business;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import de.sevendroids.scm.analyse.business.filter.AuthorFilter;
-import de.sevendroids.scm.analyse.business.filter.CommentFilter;
-import de.sevendroids.scm.analyse.business.filter.FileDataFilter;
-import de.sevendroids.scm.analyse.business.filter.FilenameFilter;
-import de.sevendroids.scm.analyse.business.filter.MinNumberOfCommentsFilter;
-import de.sevendroids.scm.analyse.data.FileData;
-import de.sevendroids.scm.analyse.data.FileHandler;
+import org.sevendroids.scm.analyse.business.filter.AuthorFilter;
+import org.sevendroids.scm.analyse.business.filter.CommentFilter;
+import org.sevendroids.scm.analyse.business.filter.FileDataFilter;
+import org.sevendroids.scm.analyse.business.filter.FilenameFilter;
+import org.sevendroids.scm.analyse.business.filter.MinNumberOfCommentsFilter;
+import org.sevendroids.scm.analyse.data.FileData;
+import org.sevendroids.scm.analyse.data.FileHandler;
 
 /**
  * In this class the work is done. - Connection to the SCM system - Filtering

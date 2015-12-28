@@ -1,13 +1,13 @@
 /**
  * 
  */
-package de.sevendroids.scm.analyse.business.filter;
+package org.sevendroids.scm.analyse.business.filter;
 
 import java.util.List;
 import java.util.regex.Pattern;
 
-import de.sevendroids.scm.analyse.data.FileData;
-import de.sevendroids.scm.analyse.data.LogData;
+import org.sevendroids.scm.analyse.data.FileData;
+import org.sevendroids.scm.analyse.data.LogData;
 
 /**
  * With this class filtering on SCM comments can be done. The filter uses
@@ -19,7 +19,7 @@ import de.sevendroids.scm.analyse.data.LogData;
 public class CommentFilter implements FileDataFilter<String> {
 
 	/**
-	 * @see de.sevendroids.scm.analyse.business.filter.FileDataFilter#filter(FileData,
+	 * @see org.sevendroids.scm.analyse.business.filter.FileDataFilter#filter(FileData,
 	 *      Object)
 	 * @param data
 	 *            The data containing the comments

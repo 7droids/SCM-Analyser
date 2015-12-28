@@ -40,4 +40,13 @@
 			<version>1.8.11</version>
 		</dependency>
 	</dependencies>
+	<organization>
+		<name>7driods</name>
+		<url>http://www.sevendroids.org</url>
+	</organization>
+	<description>A small tool to rate scm comment entries. The tool can be used to find e.g. files with lots of fixes. </description>
+	<scm>
+		<url>https://github.com/7droids/SCM-Analyser.git</url>
+		<developerConnection>to.7droids</developerConnection>
+	</scm>
 </project>

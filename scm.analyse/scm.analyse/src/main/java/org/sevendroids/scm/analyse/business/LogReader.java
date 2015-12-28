@@ -1,9 +1,9 @@
-package de.sevendroids.scm.analyse.business;
+package org.sevendroids.scm.analyse.business;
 
 import java.util.Date;
 import java.util.List;
 
-import de.sevendroids.scm.analyse.data.FileHandler;
+import org.sevendroids.scm.analyse.data.FileHandler;
 
 public interface LogReader<K> {
 

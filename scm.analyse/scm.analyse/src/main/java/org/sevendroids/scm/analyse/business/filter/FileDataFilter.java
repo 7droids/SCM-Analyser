@@ -1,9 +1,9 @@
 /**
  * 
  */
-package de.sevendroids.scm.analyse.business.filter;
+package org.sevendroids.scm.analyse.business.filter;
 
-import de.sevendroids.scm.analyse.data.FileData;
+import org.sevendroids.scm.analyse.data.FileData;
 
 /**
  * This is the general interface to filter a given FileData for any information

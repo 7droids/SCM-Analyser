@@ -1,7 +1,7 @@
 /**
  * 
  */
-package de.sevendroids.scm.analyse.business;
+package org.sevendroids.scm.analyse.business;
 
 import java.text.DateFormat;
 import java.util.Date;

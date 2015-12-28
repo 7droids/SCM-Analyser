@@ -1,7 +1,7 @@
 /**
  * 
  */
-package de.sevendroids.scm.analyse.data;
+package org.sevendroids.scm.analyse.data;
 
 import java.time.Instant;
 

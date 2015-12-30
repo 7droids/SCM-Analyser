@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
-import org.sevendroids.scm.analyse.business.NoOfCommentComperator;
+import org.sevendroids.scm.analyse.business.NoOfCommentComparator;
 import org.sevendroids.scm.analyse.business.SCMConnectionException;
 import org.sevendroids.scm.analyse.business.SCMReadLogException;
 import org.sevendroids.scm.analyse.business.SVNLogReader;
@@ -106,7 +106,7 @@ public class SCMAnalyzer {
 							System.getProperty(PASSWORD_PROPERTY).toCharArray(), fromDate, toDate),
 					System.getProperty(FILENAME_PROPERTY), System.getProperty(AUTHOR_PROPERTY),
 					System.getProperty(COMMENT_PROPERTY), minNoOfComments);
-			Collections.sort(result, new NoOfCommentComperator());
+			Collections.sort(result, new NoOfCommentComparator());
 			Collections.reverse(result);
 			System.out.println("#################### R e s u l t ####################");
 			System.out.println("# Files with the most comments at the top           ");

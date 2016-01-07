@@ -184,7 +184,7 @@ public class SCMAnalyser {
 	private static String checkProperties() {
 		StringBuilder errorMessage = new StringBuilder();
 		// Check mandatory fields
-		if (System.getProperty(URL_PROPERTY) == null || System.getProperty(AUTHOR_PROPERTY) == null
+		if (System.getProperty(URL_PROPERTY) == null || System.getProperty(USERNAME_PROPERTY) == null
 				|| System.getProperty(PASSWORD_PROPERTY) == null)
 			errorMessage.append("Neither of the proprties <" + URL_PROPERTY + ">, <" + USERNAME_PROPERTY + "> or <"
 					+ PASSWORD_PROPERTY + "> shall be empty.\n");

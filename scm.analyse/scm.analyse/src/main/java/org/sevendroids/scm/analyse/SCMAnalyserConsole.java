@@ -58,7 +58,7 @@ import org.sevendroids.scm.analyse.data.FileData;
  * @author 7droids
  *
  */
-public class SCMAnalyser {
+public class SCMAnalyserConsole {
 	// Properties
 	private static final String URL_PROPERTY = "url";
 	private static final String USERNAME_PROPERTY = "username";
@@ -72,7 +72,7 @@ public class SCMAnalyser {
 	// DateFormatPattern
 	private static final String DATE_FORMAT = "YYYY-MM-dd";
 
-	public SCMAnalyser() {
+	public SCMAnalyserConsole() {
 		SimpleSCMBusiness business = new SimpleSCMBusiness(new SVNLogReader());
 		SimpleDateFormat formatter = new SimpleDateFormat(DATE_FORMAT);
 		Date fromDate = null;
@@ -136,7 +136,7 @@ public class SCMAnalyser {
 			readPropertyFile(args[0]);
 		String errorMessage = checkProperties();
 		if (errorMessage == null)
-			new SCMAnalyser();
+			new SCMAnalyserConsole();
 		else
 			printHelp(errorMessage);
 	}

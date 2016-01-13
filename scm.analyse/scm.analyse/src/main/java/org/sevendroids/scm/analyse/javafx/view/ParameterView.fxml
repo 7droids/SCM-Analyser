@@ -125,10 +125,10 @@
          <bottom>
             <AnchorPane BorderPane.alignment="CENTER">
                <children>
-                  <ButtonBar prefHeight="40.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
+                  <ButtonBar AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0">
                     <buttons>
-                      <Button mnemonicParsing="false" text="Start" />
-                        <Button mnemonicParsing="false" text="Exit" />
+                      <Button mnemonicParsing="false" onAction="#handleStartAction" text="Start" />
+                        <Button mnemonicParsing="false" onAction="#handleExitAction" text="Exit" />
                     </buttons>
                   </ButtonBar>
                </children>

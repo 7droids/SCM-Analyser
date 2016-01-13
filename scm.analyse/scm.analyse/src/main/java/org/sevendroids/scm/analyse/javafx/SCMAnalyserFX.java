@@ -2,6 +2,8 @@ package org.sevendroids.scm.analyse.javafx;
 
 import java.io.IOException;
 
+import org.sevendroids.scm.analyse.javafx.view.ParameterViewController;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -43,10 +45,23 @@ public class SCMAnalyserFX extends Application {
 			loader.setLocation(SCMAnalyserFX.class.getResource("view/ParameterView.fxml"));
 			AnchorPane pane = loader.load();
 
+			// Give the controller access to the main app.
+			ParameterViewController controller = loader.getController();
+			controller.setMainApp(this);
+
 			rootLayout.setCenter(pane);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	/**
+	 * Returns the main stage.
+	 * 
+	 * @return
+	 */
+	public Stage getPrimaryStage() {
+		return primaryStage;
 	}
 
 	public static void main(String[] args) {

@@ -13,8 +13,6 @@ import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-import java.util.regex.Pattern;
-import java.util.regex.PatternSyntaxException;
 
 import org.sevendroids.scm.analyse.business.NoOfCommentComparator;
 import org.sevendroids.scm.analyse.business.SCMConnectionException;
@@ -22,6 +20,7 @@ import org.sevendroids.scm.analyse.business.SCMReadLogException;
 import org.sevendroids.scm.analyse.business.SVNLogReader;
 import org.sevendroids.scm.analyse.business.SimpleSCMBusiness;
 import org.sevendroids.scm.analyse.data.FileData;
+import org.sevendroids.scm.analyse.util.PropertyUtil;
 
 /**
  * This is the main class to run the SCM Analyzer from console. The necessary
@@ -59,53 +58,45 @@ import org.sevendroids.scm.analyse.data.FileData;
  *
  */
 public class SCMAnalyserConsole {
-	// Properties
-	private static final String URL_PROPERTY = "url";
-	private static final String USERNAME_PROPERTY = "username";
-	private static final String PASSWORD_PROPERTY = "password";
-	private static final String FROM_DATE_PROPERTY = "fromDate";
-	private static final String TO_DATE_PROPERTY = "toDate";
-	private static final String FILENAME_PROPERTY = "file";
-	private static final String AUTHOR_PROPERTY = "author";
-	private static final String COMMENT_PROPERTY = "comment";
-	private static final String MIN_NO_OF_COMMENTS_PROPERTY = "minNoOfComments";
-	// DateFormatPattern
-	private static final String DATE_FORMAT = "YYYY-MM-dd";
 
 	public SCMAnalyserConsole() {
 		SimpleSCMBusiness business = new SimpleSCMBusiness(new SVNLogReader());
-		SimpleDateFormat formatter = new SimpleDateFormat(DATE_FORMAT);
+		SimpleDateFormat formatter = new SimpleDateFormat(PropertyUtil.DATE_FORMAT);
 		Date fromDate = null;
 		try {
-			if (System.getProperty(FROM_DATE_PROPERTY) != null)
-				fromDate = formatter.parse(System.getProperty(FROM_DATE_PROPERTY));
+			if (System.getProperty(PropertyUtil.FROM_DATE_PROPERTY) != null)
+				fromDate = formatter.parse(System.getProperty(PropertyUtil.FROM_DATE_PROPERTY));
 		} catch (ParseException e) {
-			System.out.println("The property <" + FROM_DATE_PROPERTY + "> with the value <"
-					+ System.getProperty(FROM_DATE_PROPERTY) + "> is not parsable. The default value NULL is used.");
+			System.out.println("The property <" + PropertyUtil.FROM_DATE_PROPERTY + "> with the value <"
+					+ System.getProperty(PropertyUtil.FROM_DATE_PROPERTY)
+					+ "> is not parsable. The default value NULL is used.");
 		}
 		Date toDate = null;
 		try {
-			if (System.getProperty(TO_DATE_PROPERTY) != null)
-				toDate = formatter.parse(System.getProperty(TO_DATE_PROPERTY));
+			if (System.getProperty(PropertyUtil.TO_DATE_PROPERTY) != null)
+				toDate = formatter.parse(System.getProperty(PropertyUtil.TO_DATE_PROPERTY));
 		} catch (ParseException e) {
-			System.out.println("The property <" + TO_DATE_PROPERTY + "> with the value <"
-					+ System.getProperty(TO_DATE_PROPERTY) + "> is not parsable. The default value NULL is used.");
+			System.out.println("The property <" + PropertyUtil.TO_DATE_PROPERTY + "> with the value <"
+					+ System.getProperty(PropertyUtil.TO_DATE_PROPERTY)
+					+ "> is not parsable. The default value NULL is used.");
 		}
 		int minNoOfComments = -1;
 		try {
-			if (System.getProperty(MIN_NO_OF_COMMENTS_PROPERTY) != null)
-				minNoOfComments = Integer.parseInt(System.getProperty(MIN_NO_OF_COMMENTS_PROPERTY));
+			if (System.getProperty(PropertyUtil.MIN_NO_OF_COMMENTS_PROPERTY) != null)
+				minNoOfComments = Integer.parseInt(System.getProperty(PropertyUtil.MIN_NO_OF_COMMENTS_PROPERTY));
 		} catch (NumberFormatException e) {
-			System.out.println("The property <" + MIN_NO_OF_COMMENTS_PROPERTY + "> with the value <"
-					+ System.getProperty(MIN_NO_OF_COMMENTS_PROPERTY)
+			System.out.println("The property <" + PropertyUtil.MIN_NO_OF_COMMENTS_PROPERTY + "> with the value <"
+					+ System.getProperty(PropertyUtil.MIN_NO_OF_COMMENTS_PROPERTY)
 					+ "> is not parsable. The default value -1 is used.");
 		}
 		try {
 			List<FileData> result = business.filter(
-					business.readLog(System.getProperty(URL_PROPERTY), System.getProperty(USERNAME_PROPERTY),
-							System.getProperty(PASSWORD_PROPERTY).toCharArray(), fromDate, toDate),
-					System.getProperty(FILENAME_PROPERTY), System.getProperty(AUTHOR_PROPERTY),
-					System.getProperty(COMMENT_PROPERTY), minNoOfComments);
+					business.readLog(System.getProperty(PropertyUtil.URL_PROPERTY),
+							System.getProperty(PropertyUtil.USERNAME_PROPERTY),
+							System.getProperty(PropertyUtil.PASSWORD_PROPERTY).toCharArray(), fromDate, toDate),
+					System.getProperty(PropertyUtil.FILENAME_PROPERTY),
+					System.getProperty(PropertyUtil.AUTHOR_PROPERTY), System.getProperty(PropertyUtil.COMMENT_PROPERTY),
+					minNoOfComments);
 			Collections.sort(result, new NoOfCommentComparator());
 			Collections.reverse(result);
 			System.out.println("#################### R e s u l t ####################");
@@ -134,7 +125,7 @@ public class SCMAnalyserConsole {
 	public static void main(String[] args) {
 		if (args != null && args.length > 0)
 			readPropertyFile(args[0]);
-		String errorMessage = checkProperties();
+		String errorMessage = PropertyUtil.checkProperties();
 		if (errorMessage == null)
 			new SCMAnalyserConsole();
 		else
@@ -179,56 +170,6 @@ public class SCMAnalyserConsole {
 		System.out.println("# itself contains all necessary information from above.                         #");
 		System.out.println("#                                                                               #");
 		System.out.println("##################################### H e l p ###################################");
-	}
-
-	private static String checkProperties() {
-		StringBuilder errorMessage = new StringBuilder();
-		// Check mandatory fields
-		if (System.getProperty(URL_PROPERTY) == null || System.getProperty(USERNAME_PROPERTY) == null
-				|| System.getProperty(PASSWORD_PROPERTY) == null)
-			errorMessage.append("Neither of the proprties <" + URL_PROPERTY + ">, <" + USERNAME_PROPERTY + "> or <"
-					+ PASSWORD_PROPERTY + "> shall be empty.\n");
-
-		if (System.getProperty(FROM_DATE_PROPERTY) != null)
-			try {
-				new SimpleDateFormat(DATE_FORMAT).parse(System.getProperty(FROM_DATE_PROPERTY));
-			} catch (ParseException e) {
-				errorMessage.append("The property <" + FROM_DATE_PROPERTY + "> is not parseble with the pattern <"
-						+ DATE_FORMAT + ">.\n");
-			}
-
-		if (System.getProperty(TO_DATE_PROPERTY) != null)
-			try {
-				new SimpleDateFormat(DATE_FORMAT).parse(System.getProperty(TO_DATE_PROPERTY));
-			} catch (ParseException e) {
-				errorMessage.append("The property <" + TO_DATE_PROPERTY + "> is not parseble with the pattern <"
-						+ DATE_FORMAT + ">.\n");
-			}
-
-		if (System.getProperty(AUTHOR_PROPERTY) != null)
-			try {
-				Pattern.compile(System.getProperty(AUTHOR_PROPERTY));
-			} catch (PatternSyntaxException e) {
-				errorMessage.append("The property <" + AUTHOR_PROPERTY + "> has not a valid regular expression <"
-						+ System.getProperty(AUTHOR_PROPERTY) + ">.\n");
-			}
-
-		if (System.getProperty(COMMENT_PROPERTY) != null)
-			try {
-				Pattern.compile(System.getProperty(COMMENT_PROPERTY));
-			} catch (PatternSyntaxException e) {
-				errorMessage.append("The property <" + COMMENT_PROPERTY + "> has not a valid regular expression <"
-						+ System.getProperty(COMMENT_PROPERTY) + ">.\n");
-			}
-
-		if (System.getProperty(MIN_NO_OF_COMMENTS_PROPERTY) != null)
-			try {
-				Integer.parseInt(System.getProperty(MIN_NO_OF_COMMENTS_PROPERTY));
-			} catch (NumberFormatException e) {
-				errorMessage.append("The property <" + MIN_NO_OF_COMMENTS_PROPERTY + "> has not a valid integer value <"
-						+ System.getProperty(MIN_NO_OF_COMMENTS_PROPERTY) + ">.\n");
-			}
-		return errorMessage.toString().isEmpty() ? null : errorMessage.toString();
 	}
 
 	private static void readPropertyFile(String propertyFile) {
